@@ -233,7 +233,7 @@ This is a paragraph with **bold** text.
 
 ## Text Measurement
 
-### Measuring Text Width
+### Measuring Text Height
 
 ```swift
 // Wrong (Legacy) - GeometryReader trick
