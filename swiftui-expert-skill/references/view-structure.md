@@ -200,6 +200,45 @@ MyContainer {
 }
 ```
 
+## ZStack vs overlay/background
+
+Use `ZStack` to **compose multiple peer views** that should be layered together.
+Do **not** use `ZStack` to place inner or decorative elements inside a primary view.
+For decoration or attachment to a single view, prefer `overlay` or `background`.
+
+### ZStack usage
+
+```swift
+// GOOD - for correct usage
+// Multiple peer views composed together
+ZStack(alignment: .bottomLeading) {
+    MapView()
+    LocationPermissionCallout()
+    FloatingControls()
+}
+
+// BAD - for wrong one
+// ZStack used only to decorate a primary view
+ZStack {
+    Button("Continue") {
+        // action
+    }
+    Image(systemName: "lock.fill")
+        .offset(x: 8)
+}
+
+// GOOD - for correct usage
+// Decoration belongs to the primary view
+Button("Continue") {
+    // action
+}
+.overlay(alignment: .trailing) {
+    Image(systemName: "lock.fill")
+        .padding(.trailing, 8)
+}
+
+```
+
 ## Summary Checklist
 
 - [ ] Prefer modifiers over conditional views for state changes
