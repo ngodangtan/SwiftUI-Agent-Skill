@@ -237,43 +237,32 @@ ZStack(alignment: .trailing) {
 }
 
 // GOOD - correct usage
-// Badge reserves space / extends bounds, so it must be part of layout sizing.
-// Use a container (ZStack/VStack/HStack) to make sizing explicit.
-ZStack(alignment: .topTrailing) {
-    HStack(spacing: 8) {
+// Capsule is taking a parent size for rendering
+HStack(spacing: 12) {
+    HStack {
         Image(systemName: "tray")
         Text("Inbox")
     }
-    .padding(.trailing, 18) // add trailing space to the content so the ZStack measures wider and the badge doesn't overlap the "Inbox" text or sit too close to neighbors
-
-    Text("3")
-        .font(.caption2)
-        .padding(.horizontal, 6)
-        .padding(.vertical, 2)
-        .background(Capsule().fill(.red))
-        .padding(.top, -6)
-        .padding(.trailing, -6)
+    Text("Next")
+}
+.background {
+    Capsule()
+        .strokeBorder(.blue, lineWidth: 2)
 }
 
 // BAD - incorrect usage
-// overlay does not contribute to measured size, so the badge may overlap/clamp with neighbors
-HStack {
-    HStack(spacing: 8) {
-        Image(systemName: "tray")
-        Text("Inbox")
-    }
-    .overlay(alignment: .topTrailing) {
-        Text("3")
-            .font(.caption2)
-            .padding(.horizontal, 6)
-            .padding(.vertical, 2)
-            .background(Capsule().fill(.red))
-            .padding(.top, -6)
-            .padding(.trailing, -6)
+// overlay does not contribute to measured size, so the Capsule is taking all available space if no explicit size is set
+ZStack(alignment: .topTrailing) {
+    HStack(spacing: 12) {
+        HStack {
+            Image(systemName: "tray")
+            Text("Inbox")
+        }
+        Text("Next")
     }
 
-    Spacer()
-    Text("Next")
+    Capsule()
+        .strokeBorder(.blue, lineWidth: 2)
 }
 ```
 
