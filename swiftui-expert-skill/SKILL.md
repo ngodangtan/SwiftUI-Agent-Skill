@@ -16,7 +16,7 @@ Use this skill to build, review, or improve SwiftUI features with correct state 
 - Verify view composition follows extraction rules (see `references/view-structure.md`)
 - Check performance patterns are applied (see `references/performance-patterns.md`)
 - Verify list patterns use stable identity (see `references/list-patterns.md`)
-- Check animation patterns for correctness (see `references/animation-patterns.md`)
+- Check animation patterns for correctness (see `references/animation-basics.md`, `references/animation-transitions.md`)
 - Inspect Liquid Glass usage for correctness and consistency (see `references/liquid-glass.md`)
 - Validate iOS 26+ availability handling with sensible fallbacks
 
@@ -26,7 +26,7 @@ Use this skill to build, review, or improve SwiftUI features with correct state 
 - Extract complex views into separate subviews (see `references/view-structure.md`)
 - Refactor hot paths to minimize redundant state updates (see `references/performance-patterns.md`)
 - Ensure ForEach uses stable identity (see `references/list-patterns.md`)
-- Improve animation patterns (use value parameter, proper transitions, see `references/animation-patterns.md`)
+- Improve animation patterns (use value parameter, proper transitions, see `references/animation-basics.md`, `references/animation-transitions.md`)
 - Suggest image downsampling when `UIImage(data:)` is used (as optional optimization, see `references/image-optimization.md`)
 - Adopt Liquid Glass only when explicitly requested by the user
 
@@ -36,7 +36,7 @@ Use this skill to build, review, or improve SwiftUI features with correct state 
 - Use `@Observable` for shared state (with `@MainActor` if not using default actor isolation)
 - Structure views for optimal diffing (extract subviews early, keep views small, see `references/view-structure.md`)
 - Separate business logic into testable models (see `references/layout-best-practices.md`)
-- Use correct animation patterns (implicit vs explicit, transitions, see `references/animation-patterns.md`)
+- Use correct animation patterns (implicit vs explicit, transitions, see `references/animation-basics.md`, `references/animation-transitions.md`, `references/animation-advanced.md`)
 - Apply glass effects after layout/appearance modifiers (see `references/liquid-glass.md`)
 - Gate iOS 26+ features with `#available` and provide fallbacks
 
@@ -246,7 +246,7 @@ Button("Confirm") { }
 - [ ] Using relative layout (not hard-coded constants)
 - [ ] Views work in any context (context-agnostic)
 
-### Animations (see `references/animation-patterns.md`)
+### Animations (see `references/animation-basics.md`, `references/animation-transitions.md`, `references/animation-advanced.md`)
 - [ ] Using `.animation(_:value:)` with value parameter
 - [ ] Using `withAnimation` for event-driven animations
 - [ ] Transitions paired with animations outside conditional structure
@@ -270,7 +270,9 @@ Button("Confirm") { }
 - `references/list-patterns.md` - ForEach identity, stability, and list best practices
 - `references/layout-best-practices.md` - Layout patterns, context-agnostic views, and testability
 - `references/modern-apis.md` - Modern API usage and deprecated replacements
-- `references/animation-patterns.md` - Animation patterns, transitions, and iOS 17+ APIs
+- `references/animation-basics.md` - Core animation concepts, implicit/explicit animations, timing, performance
+- `references/animation-transitions.md` - Transitions, custom transitions, Animatable protocol
+- `references/animation-advanced.md` - Transactions, phase/keyframe animations (iOS 17+), completion handlers (iOS 17+)
 - `references/sheet-navigation-patterns.md` - Sheet presentation and navigation patterns
 - `references/scroll-patterns.md` - ScrollView patterns and programmatic scrolling
 - `references/text-formatting.md` - Modern text formatting and string operations
