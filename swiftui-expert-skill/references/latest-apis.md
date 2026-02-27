@@ -7,7 +7,6 @@
 - [When Targeting iOS 16+](#when-targeting-ios-16)
 - [When Targeting iOS 17+](#when-targeting-ios-17)
 - [When Targeting iOS 18+](#when-targeting-ios-18)
-- [When Targeting iOS 26+](#when-targeting-ios-26)
 
 ---
 
@@ -254,6 +253,22 @@ Image("photo")
     .onTapGesture(count: 2) { handleDoubleTap() }
 ```
 
+### Animation
+
+**Always use `animation(_:value:)` instead of `animation(_:)` without a value parameter.** The value-based variant back-deploys to iOS 13+.
+
+```swift
+// Modern
+Circle()
+    .scaleEffect(isExpanded ? 1.5 : 1.0)
+    .animation(.spring, value: isExpanded)
+
+// Deprecated — applies to all animatable values (too broad)
+Circle()
+    .scaleEffect(isExpanded ? 1.5 : 1.0)
+    .animation(.spring)
+```
+
 ---
 
 ## When Targeting iOS 16+
@@ -382,22 +397,6 @@ The deprecated variant passes only the new value. The modern variants provide ei
 .onChange(of: playState) { newValue in
     model.playStateDidChange(state: newValue)
 }
-```
-
-### Animation
-
-**Use `animation(_:value:)` instead of `animation(_:)` without a value parameter.**
-
-```swift
-// Modern
-Circle()
-    .scaleEffect(isExpanded ? 1.5 : 1.0)
-    .animation(.spring, value: isExpanded)
-
-// Deprecated — applies to all animatable values (too broad)
-Circle()
-    .scaleEffect(isExpanded ? 1.5 : 1.0)
-    .animation(.spring)
 ```
 
 ### Gestures
@@ -537,75 +536,6 @@ When using `Tab(role:)`, all tabs must use the `Tab` syntax. Mixing `Tab(role:)`
 
 ---
 
-## When Targeting iOS 26+
-
-### Liquid Glass
-
-**Use `glassEffect(_:in:)` for glass material effects.**
-
-```swift
-if #available(iOS 26, *) {
-    content
-        .padding()
-        .glassEffect(.regular.interactive(), in: .rect(cornerRadius: 16))
-} else {
-    content
-        .padding()
-        .background(.ultraThinMaterial, in: RoundedRectangle(cornerRadius: 16))
-}
-```
-
-**Use `GlassEffectContainer` to group multiple glass elements.**
-
-```swift
-GlassEffectContainer(spacing: 24) {
-    HStack(spacing: 24) {
-        GlassButton1()
-        GlassButton2()
-    }
-}
-```
-
-**Use glass button styles for buttons.**
-
-```swift
-Button("Confirm") { }
-    .buttonStyle(.glassProminent)
-```
-
-### Scroll Edge Effects
-
-**Use `scrollEdgeEffectStyle(_:for:)` to configure scroll edge behavior.**
-
-```swift
-ScrollView {
-    // content
-}
-.scrollEdgeEffectStyle(.soft, for: .top)
-```
-
-### Background Extension
-
-**Use `backgroundExtensionEffect()` for edge-extending blurred backgrounds.**
-
-```swift
-Image("hero")
-    .backgroundExtensionEffect()
-```
-
-### Tab Bar
-
-**Use `tabBarMinimizeBehavior(_:)` to control tab bar minimization.**
-
-```swift
-TabView {
-    // tabs
-}
-.tabBarMinimizeBehavior(.onScrollDown)
-```
-
----
-
 ## Quick Lookup Table
 
 | Deprecated | Recommended | Since |
@@ -623,12 +553,12 @@ TabView {
 | `autocapitalization(_:)` | `textInputAutocapitalization(_:)` | iOS 15+ |
 | `accessibility(label:)` etc. | `accessibilityLabel()` etc. | iOS 15+ |
 | `TextField` `onCommit`/`onEditingChanged` | `onSubmit` + `focused` | iOS 15+ |
+| `animation(_:)` (no value) | `animation(_:value:)` | Back-deploys (iOS 13+) |
 | Manual `EnvironmentKey` | `@Entry` macro | Back-deploys (Xcode 16+) |
 | `NavigationView` | `NavigationStack` / `NavigationSplitView` | iOS 16+ |
 | `accentColor(_:)` | `tint(_:)` | iOS 16+ |
 | `disableAutocorrection(_:)` | `autocorrectionDisabled(_:)` | iOS 16+ |
 | `onChange(of:perform:)` | `onChange(of:) { }` or `onChange(of:) { old, new in }` | iOS 17+ |
-| `animation(_:)` (no value) | `animation(_:value:)` | iOS 17+ |
 | `MagnificationGesture` | `MagnifyGesture` | iOS 17+ |
 | `RotationGesture` | `RotateGesture` | iOS 17+ |
 | `coordinateSpace(name:)` | `coordinateSpace(.named(...))` | iOS 17+ |
