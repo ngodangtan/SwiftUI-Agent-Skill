@@ -125,6 +125,9 @@ swiftui-expert-skill/
     layout-best-practices.md - Layout patterns and GeometryReader alternatives
     liquid-glass.md - iOS 26+ glass effects and fallback patterns
     list-patterns.md - ForEach identity and list performance
+    macos-scenes.md
+    macos-views.md
+    macos-window-styling.md
     performance-patterns.md - Hot-path optimizations and update control
     scroll-patterns.md - ScrollViewReader and programmatic scrolling
     sheet-navigation-patterns.md - Sheets and type-safe navigation
