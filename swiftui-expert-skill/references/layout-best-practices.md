@@ -261,7 +261,7 @@ struct LoginView: View {
 
 ## Full-Width Views
 
-**Use `.frame(maxWidth: .infinity, alignment:)` instead of wrapping a view in a stack with a `Spacer`.**
+**When a single view needs to fill the available width, use `.frame(maxWidth: .infinity, alignment:)` instead of wrapping it in a stack with a `Spacer`.**
 
 ```swift
 // Good - frame modifier
