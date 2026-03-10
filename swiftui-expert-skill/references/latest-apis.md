@@ -25,7 +25,7 @@ These replacements have minimal API shape changes. Most are near-direct swaps; a
 - **`statusBarHidden(_:)`** instead of `statusBar(hidden:)`
 - **`ignoresSafeArea(_:edges:)`** instead of `edgesIgnoringSafeArea(_:)`
 - **`preferredColorScheme(_:)`** instead of `colorScheme(_:)`
-- **`foregroundStyle(_:)`** instead of `foregroundColor(_:)`
+- **`foregroundStyle(_:)`** instead of `foregroundColor(_:)` (e.g., `.foregroundStyle(.primary)`)
 - **`clipShape(.rect(cornerRadius:))`** instead of `cornerRadius()`
 - **`textInputAutocapitalization(_:)`** instead of `autocapitalization(_:)` (note: `.never` replaces `.none`)
 - **`animation(_:value:)`** instead of `animation(_:)` (adds required `value:` parameter; back-deploys to iOS 13+)
@@ -156,7 +156,7 @@ Image("hero")
   ```swift
   .onGeometryChange(for: CGFloat.self) { proxy in proxy.size.height } action: { newHeight in height = newHeight }
   ```
-- **`.coordinateSpace(.named("id"))`** instead of `.coordinateSpace(name: "id")`.
+- **`.coordinateSpace(.named("scroll"))`** instead of `.coordinateSpace(name: "scroll")`.
 
 ---
 
@@ -440,7 +440,7 @@ PhotoGrid(photos: photos)
 | `statusBar(hidden:)` | `statusBarHidden(_:)` | iOS 15+ |
 | `edgesIgnoringSafeArea(_:)` | `ignoresSafeArea(_:edges:)` | iOS 15+ |
 | `colorScheme(_:)` | `preferredColorScheme(_:)` | iOS 15+ |
-| `foregroundColor(_:)` | `foregroundStyle()` | iOS 15+ |
+| `foregroundColor(_:)` | `foregroundStyle(_:)` | iOS 15+ |
 | `cornerRadius(_:)` | `clipShape(.rect(cornerRadius:))` | iOS 15+ |
 | `actionSheet(...)` | `confirmationDialog(...)` | iOS 15+ |
 | `alert(isPresented:content:)` | `alert(_:isPresented:actions:message:)` | iOS 15+ |
