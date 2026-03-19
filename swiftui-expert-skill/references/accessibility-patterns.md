@@ -69,7 +69,7 @@ struct StatusRow: View {
     var body: some View {
         HStack(spacing: 8) {
             Image(systemName: "checkmark.circle.fill")
-                .frame(width: iconSize, height: iconSize)
+                .font(.system(size: iconSize))
             Text("Synced")
                 .font(.custom("AvenirNext-Regular", size: 17, relativeTo: .body))
         }
