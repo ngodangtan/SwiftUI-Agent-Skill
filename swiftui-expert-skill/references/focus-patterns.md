@@ -118,7 +118,7 @@ extension FocusedValues {
 }
 ```
 
-All focused values must be optional (default is `nil` when no view publishes them).
+Focused values are typically optional (default is `nil` when no view publishes them), but you can also use non-optional entries when you have a sensible default value.
 
 ### Publish from views
 
