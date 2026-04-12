@@ -9,7 +9,7 @@
 **Default: always use `Text("…")`.** Only use `Text(verbatim:)` when explicitly required for a string literal that must not be localized.
 
 ```swift
-// Localized literal - "Save" is used as the localization key and looked up in Localizable.strings
+// Localized literal - "Save" is used as the localization key and looked up in Localizable.strings (only if one exists in the project)
 Text("Save")
 
 // String variable - bypasses localization automatically; no verbatim needed
